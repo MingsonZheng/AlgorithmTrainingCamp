@@ -14,13 +14,12 @@ public class _004LinkedListQueue {
 
         public void enqueue (String value) {
             Node newNode = new Node(value, null);
-            if (tail == null) {
+            if (tail == null) {// 空链表特殊处理
                 head = newNode;
-                tail = newNode;
             } else {
                 tail.next = newNode;
-                tail = newNode;
             }
+            tail = newNode;
         }
 
         public String dequeue () {
@@ -29,7 +28,7 @@ public class _004LinkedListQueue {
             }
             String Value = head.data;
             head = head.next;
-            if (head == null) {
+            if (head == null) {// 队列为空，tail 需要更新为 null
                 tail = null;
             }
             return Value;
