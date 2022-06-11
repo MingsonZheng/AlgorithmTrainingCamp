@@ -5,6 +5,9 @@ public class _006Sort {
     public static void main(String[] args) {
         var a = new int[]{3, 8, 2, 1, 5};
         var n = 5;
+        QuickSort(a, n);// 归并排序
+        System.out.println(Arrays.toString(a));
+        a = new int[]{3, 8, 2, 1, 5};
         MergeSort(a, n);// 归并排序
         System.out.println(Arrays.toString(a));
         a = new int[]{3, 8, 2, 1, 5};
@@ -16,6 +19,38 @@ public class _006Sort {
         a = new int[]{3, 8, 2, 1, 5};
         BubbleSort(a, n);// 冒泡排序
         System.out.println(Arrays.toString(a));
+    }
+
+    // 快速排序
+    public static void QuickSort(int[] a, int n) {
+        quickSort_r(a, 0, n-1);
+    }
+
+    private static void quickSort_r(int[] a, int p, int r) {
+        if (p >= r) return;
+        int q = partition(a, p, r);// 获取分区点下标
+        quickSort_r(a, p, q-1);
+        quickSort_r(a, q+1, r);
+    }
+
+    // 代码简单，但难理解，双指针的方法更好理解
+    // [p, i] 比分区点小；[i+1, j) 未处理；[j, r-1] 比分区点大
+    private static int partition(int[] a, int p, int r) {
+        int i = p - 1;// [p, i] 表示小于 pivot 值的元素
+        for (int j = p; j < r; j++) {// 用 j 来遍历整个数组 [p, r]
+            if (a[j] < a[r]) {
+                swap(a, i+1, j);
+                i++;
+            }
+        }
+        swap(a, i+1, r);
+        return i+1;
+    }
+
+    private static void swap(int[] nums, int i, int j) {
+        int tmp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = tmp;
     }
 
     // 归并排序
