@@ -5,14 +5,57 @@ public class _006Sort {
     public static void main(String[] args) {
         var a = new int[]{3, 8, 2, 1, 5};
         var n = 5;
-        BubbleSort(a, n);// 冒泡排序
+        MergeSort(a, n);// 归并排序
+        System.out.println(Arrays.toString(a));
+        a = new int[]{3, 8, 2, 1, 5};
+        SelectionSort(a, n);// 选择排序
         System.out.println(Arrays.toString(a));
         a = new int[]{3, 8, 2, 1, 5};
         InsertionSort(a, n);// 插入排序
         System.out.println(Arrays.toString(a));
         a = new int[]{3, 8, 2, 1, 5};
-        SelectionSort(a, n);// 选择排序
+        BubbleSort(a, n);// 冒泡排序
         System.out.println(Arrays.toString(a));
+    }
+
+    // 归并排序
+    public static void MergeSort(int[] a, int n){
+        mergeSort_r(a, 0, n-1);
+    }
+
+    private static void mergeSort_r(int[] a, int p, int r){
+        if (p >= r) return;
+
+        int q = p + (r - p) / 2;
+        mergeSort_r(a, p, q);
+        mergeSort_r(a, q+1, r);
+
+        // 将 a[p...q] 和 a[q+1...r] 合并为 a[p...r]
+        merge(a, p, q, r);
+    }
+
+    private static void merge(int[] a, int p, int q, int r) {
+        int i = p;
+        int j = q + 1;
+        int k = 0;
+        int[] tmp = new int[r-p+1];// 申请一个大小跟 a[p...r] 一样的临时数组
+        while (i <= q && j <= r) {
+            if (a[i] <= a[j]) {
+                tmp[k++] = a[i++];
+            } else {
+                tmp[k++] = a[j++];
+            }
+        }
+        while (i <= q) {
+            tmp[k++] = a[i++];
+        }
+        while (j <= r)  {
+            tmp[k++] = a[j++];
+        }
+        // 将 tmp 中的数组拷贝回 a[p...r]
+        for (int l = 0; l <= r-p; l++) {
+            a[p+l] = tmp[l];
+        }
     }
 
     // 选择排序
