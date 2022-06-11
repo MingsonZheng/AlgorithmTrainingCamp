@@ -10,6 +10,26 @@ public class _006Sort {
         a = new int[]{3, 8, 2, 1, 5};
         InsertionSort(a, n);// 插入排序
         System.out.println(Arrays.toString(a));
+        a = new int[]{3, 8, 2, 1, 5};
+        SelectionSort(a, n);// 选择排序
+        System.out.println(Arrays.toString(a));
+    }
+
+    // 选择排序
+    public static void SelectionSort(int[] a, int n) {
+        if (n <= 1) return;
+        for (int i = 0; i < n - 1; i++) {// 循环 n-1 次就可以
+            int minPos = i;
+            for (int j = i; j < n; j++) {// 查找 min
+                if (a[j] < a[minPos]) {
+                    minPos = j;
+                }
+            }
+            // 交换元素
+            int tmp = a[i];
+            a[i] = a[minPos];
+            a[minPos] = tmp;
+        }
     }
 
     // 插入排序
