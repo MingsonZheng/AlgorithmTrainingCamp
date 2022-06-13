@@ -1,20 +1,67 @@
 import java.util.Arrays;
+import java.util.List;
 
 public class _006Example {
     public static void main(String[] args) {
-        // 例题 2：TOP K，215. 数组中的第K个最大元素
+        // 例题 3：[147. 对链表进行插入排序](https://leetcode.cn/problems/insertion-sort-list/)
+        ListNode head = new ListNode(4);
+        head.next = new ListNode(2);
+        head.next.next = new ListNode(1);
+        head.next.next.next = new ListNode(3);
+        head = InsertionSortList(head);
+        while (head.next != null) {
+            System.out.println(head.val);
+            head = head.next;
+        }
+        System.out.println(head.val);
+        System.out.println();
+
+        // 例题 2：TOP K，[215. 数组中的第K个最大元素](https://leetcode.cn/problems/kth-largest-element-in-an-array/)
         var nums = new int[]{3, 2, 1, 5, 6, 4};
-        System.out.println(FindKthLargest(nums, 2));// 5
+        System.out.println(FindKthLargest(nums, 2));
         nums = new int[]{3, 2, 3, 1, 2, 4, 5, 5, 6};
-        System.out.println(FindKthLargest(nums, 4));// 4
+        System.out.println(FindKthLargest(nums, 4));
+        System.out.println();
 
         // 例题 1：特殊排序
         nums = new int[]{1, 2, 3, 4};
         System.out.println(Arrays.toString(Exchange(nums)));
     }
 
-    // 例题 2：TOP K
-    // 215. 数组中的第K个最大元素
+    // 例题 3：[147. 对链表进行插入排序](https://leetcode.cn/problems/insertion-sort-list/)
+    public static ListNode InsertionSortList(ListNode head) {
+        if (head == null) return null;
+        // 存储已经排好序的节点
+        ListNode dummyHead = new ListNode(Integer.MIN_VALUE, null);
+
+        // 遍历节点
+        ListNode p = head;
+        while (p != null) {
+            ListNode tmp = p.next;
+
+            // 寻找 p 节点插入的位置，插入到哪个节点后面
+            ListNode q = dummyHead;// 初始化值
+            while (q.next != null && q.next.val <= p.val) {// 循环结束条件
+                q = q.next;
+            }
+            // 将 p 节点插入
+            p.next = q.next;
+            q.next = p;
+            p = tmp;
+        }
+        return dummyHead.next;
+    }
+
+    // Definition for singly-linked list.
+    public static class ListNode {
+        int val;
+        ListNode next;
+        ListNode() {}
+        ListNode(int val) { this.val = val; }
+        ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+    }
+
+    // 例题 2：TOP K，[215. 数组中的第K个最大元素](https://leetcode.cn/problems/kth-largest-element-in-an-array/)
     public static int FindKthLargest(int[] nums, int k) {
         if (nums.length < k) return -1;
         return quickSort(nums, 0, nums.length-1, k);
