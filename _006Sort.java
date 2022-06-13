@@ -3,46 +3,26 @@ import java.util.Arrays;
 public class _006Sort {
 
     public static void main(String[] args) {
-        var nums = new int[]{1, 2, 3, 4};
-        System.out.println(Arrays.toString(Exchange(nums)));// 例题 1：特殊排序
         var a = new int[]{3, 8, 2, 1, 5};
         var n = 5;
         QuickSort(a, n);// 归并排序
         System.out.println(Arrays.toString(a));
+
         a = new int[]{3, 8, 2, 1, 5};
         MergeSort(a, n);// 归并排序
         System.out.println(Arrays.toString(a));
+
         a = new int[]{3, 8, 2, 1, 5};
         SelectionSort(a, n);// 选择排序
         System.out.println(Arrays.toString(a));
+
         a = new int[]{3, 8, 2, 1, 5};
         InsertionSort(a, n);// 插入排序
         System.out.println(Arrays.toString(a));
+
         a = new int[]{3, 8, 2, 1, 5};
         BubbleSort(a, n);// 冒泡排序
         System.out.println(Arrays.toString(a));
-    }
-
-    // 例题 1：特殊排序
-    public static int[] Exchange(int[] nums) {
-        int i = 0;
-        int j = nums.length - 1;
-        while (i < j) {
-            if (nums[i] % 2 == 1) {
-                i++;
-                continue;
-            }
-            if (nums[j] % 2 == 0) {
-                j--;
-                continue;
-            }
-            int tmp = nums[i];
-            nums[i] = nums[j];
-            nums[j] = tmp;
-            i++;
-            j--;
-        }
-        return nums;
     }
 
     // 快速排序
