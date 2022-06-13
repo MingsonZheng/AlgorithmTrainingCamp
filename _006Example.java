@@ -3,6 +3,11 @@ import java.util.List;
 
 public class _006Example {
     public static void main(String[] args) {
+        // 例题 4：排序预处理
+        int[] data = new int[]{3, 2, 1, 6, 1, 1, 2, 2, 3, 2};
+        System.out.println(MaxCount(data));
+        System.out.println();
+
         // 例题 3：[147. 对链表进行插入排序](https://leetcode.cn/problems/insertion-sort-list/)
         ListNode head = new ListNode(4);
         head.next = new ListNode(2);
@@ -26,6 +31,26 @@ public class _006Example {
         // 例题 1：特殊排序
         nums = new int[]{1, 2, 3, 4};
         System.out.println(Arrays.toString(Exchange(nums)));
+    }
+
+    // 例题 4：排序预处理
+    public static int MaxCount(int[] data) {
+        Arrays.sort(data);
+        int n = data.length;
+        int prev = -1;
+        int count = 0;
+        int max = -1;
+        for (int i = 0; i < n; i++) {
+            if (data[i] == prev) {
+                count++;
+                if (max < count) max = count;
+            } else {
+                count = 1;
+                prev = data[i];
+                if (max < count) max = count;
+            }
+        }
+        return max;
     }
 
     // 例题 3：[147. 对链表进行插入排序](https://leetcode.cn/problems/insertion-sort-list/)
