@@ -1,3 +1,5 @@
+package _002ProgrammingAndRegularities;
+
 public class _002Regularities {
 
     // 找规律题例题2：剑指 Offer 61. 扑克牌中的顺子

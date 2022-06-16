@@ -1,3 +1,5 @@
+package _005RecursionAndPartition;
+
 public class _005RecursionAndPartition {
     // 备忘录
     private int[] mem;

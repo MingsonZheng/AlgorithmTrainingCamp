@@ -1,3 +1,5 @@
+package _003ArraysAndLinkedLists;
+
 public class _003Arrays {
     // 动态扩容的数组
     public class MyArrayList {

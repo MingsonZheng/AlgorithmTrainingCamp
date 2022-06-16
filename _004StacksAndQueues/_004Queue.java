@@ -1,3 +1,5 @@
+package _004StacksAndQueues;
+
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Queue;

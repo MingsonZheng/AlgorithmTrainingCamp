@@ -1,3 +1,5 @@
+package _004StacksAndQueues;
+
 public class _004Stack {
     public static void main() {
         // Java 编程语言中的栈：java.util.Stack

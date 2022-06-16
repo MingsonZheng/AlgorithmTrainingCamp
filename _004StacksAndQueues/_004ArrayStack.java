@@ -1,3 +1,5 @@
+package _004StacksAndQueues;
+
 public class _004ArrayStack {
     public class ArrayStack {// 基于数组实现的顺序栈
         private int[] items;// 数组

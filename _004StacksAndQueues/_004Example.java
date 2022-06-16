@@ -1,3 +1,5 @@
+package _004StacksAndQueues;
+
 import java.util.Arrays;
 import java.util.Stack;
 import static java.lang.Character.isDigit;

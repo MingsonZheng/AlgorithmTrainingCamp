@@ -1,3 +1,5 @@
+package _004StacksAndQueues;
+
 public class _004LinkedListQueue {
     // 队列的实现--基于链表（链式队列）
     public class LinkedListQueue {

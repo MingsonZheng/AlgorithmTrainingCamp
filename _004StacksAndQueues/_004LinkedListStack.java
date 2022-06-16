@@ -1,3 +1,5 @@
+package _004StacksAndQueues;
+
 public class _004LinkedListStack {
     public class LinkedListStack {// 基于链表的链式栈
         public class Node {

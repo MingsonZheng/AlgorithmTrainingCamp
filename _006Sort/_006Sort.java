@@ -1,3 +1,5 @@
+package _006Sort;
+
 import java.util.Arrays;
 
 public class _006Sort {

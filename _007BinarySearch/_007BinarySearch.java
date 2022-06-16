@@ -1,3 +1,5 @@
+package _007BinarySearch;
+
 public class _007BinarySearch {
 
     public static void main(String[] args) {

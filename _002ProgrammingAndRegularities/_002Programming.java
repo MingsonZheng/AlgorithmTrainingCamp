@@ -1,3 +1,5 @@
+package _002ProgrammingAndRegularities;
+
 public class _002Programming {
     public static void main(String[] args) {
         // 纯编程题例题2 1108. IP 地址无效化
