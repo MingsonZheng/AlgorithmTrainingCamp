@@ -12,6 +12,13 @@ public class _009BinaryTrees {
 
         private  Node root = null;
 
-        // TODO: 各种操作
+        // 二叉树的遍历
+        // 前序遍历：先打印根节点，然后再前序遍历左子树，最后再前序遍历右子树
+        public void preOrder(Node root) {
+            if (root == null) return;
+            System.out.println(root.data);
+            preOrder(root.left);
+            preOrder(root.right);
+        }
     }
 }
