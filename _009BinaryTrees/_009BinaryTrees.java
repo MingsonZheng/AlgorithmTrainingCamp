@@ -27,5 +27,12 @@ public class _009BinaryTrees {
             System.out.println(root.data);
             inOrder(root.right);
         }
+        // 后序遍历：先后序遍历左子树，然后后续遍历右子树，最后打印根节点
+        public void postOrder(Node root) {
+            if (root == null) return;
+            inOrder(root.left);
+            inOrder(root.right);
+            System.out.println(root.data);
+        }
     }
 }
