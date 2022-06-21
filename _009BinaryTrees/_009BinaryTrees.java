@@ -20,5 +20,12 @@ public class _009BinaryTrees {
             preOrder(root.left);
             preOrder(root.right);
         }
+        // 中序遍历：先中序遍历左子树，然后打印根节点，最后再中序遍历右子树
+        public void inOrder(Node root) {
+            if (root == null) return;
+            inOrder(root.left);
+            System.out.println(root.data);
+            inOrder(root.right);
+        }
     }
 }
