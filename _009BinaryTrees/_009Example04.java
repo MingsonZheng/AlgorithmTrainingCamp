@@ -5,7 +5,7 @@ package _009BinaryTrees;
 
 public class _009Example04 {
 
-        public static void main(String args[]) {
+    public static void main(String args[]) {
         var node15 = new TreeNode(15);
         var node7 = new TreeNode(7);
         var node20 = new TreeNode(20);
