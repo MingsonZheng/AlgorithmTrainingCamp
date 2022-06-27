@@ -1,7 +1,5 @@
 package _009BinaryTrees;
 
-import com.sun.source.tree.Tree;
-
 // 题型 6：二叉树转单、双、循环链表
 // 114. 二叉树展开为链表
 public class _009Example07 {
