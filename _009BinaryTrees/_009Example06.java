@@ -2,6 +2,7 @@ package _009BinaryTrees;
 
 // 题型 5：LCA 最近公共祖先
 // 236. 二叉树的最近公共祖先
+// 把问题转换为查找一棵树包含多少 p 或 q
 
 public class _009Example06 {
     public static void main(String args[]){
@@ -37,6 +38,7 @@ public class _009Example06 {
         return lca;
     }
 
+    // 有就是 1，没有就是 0，总数 = left + right + root
     private static int dfs(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null) {
             return 0;
