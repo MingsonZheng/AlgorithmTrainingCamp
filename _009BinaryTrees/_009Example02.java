@@ -1,10 +1,9 @@
 package _009BinaryTrees;
 
-// 剑指 Offer 32 - I. 从上到下打印二叉树
-
-import com.sun.source.tree.Tree;
-
 import java.util.*;
+
+// 题型2：二叉树按层遍历
+// 剑指 Offer 32 - I. 从上到下打印二叉树
 
 public class _009Example02 {
 

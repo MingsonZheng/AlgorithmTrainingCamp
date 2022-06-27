@@ -1,8 +1,7 @@
 package _009BinaryTrees;
 
+// 题型3：二叉树上的递归
 // 104. 二叉树的最大深度
-
-import java.util.Arrays;
 
 public class _009Example03 {
 
