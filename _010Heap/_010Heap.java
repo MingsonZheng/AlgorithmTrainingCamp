@@ -12,6 +12,13 @@ public class _010Heap {
             count = 0;
         }
 
+        public int top() {
+            if (count == 0) {
+                return Integer.MIN_VALUE;
+            }
+            return a[1];
+        }
+
         public void insert(int data) {
             if (count >= n) {
                 return;// 堆满了
