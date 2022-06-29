@@ -3,6 +3,18 @@ package _010Heap;
 public class _010Heap {
     public class Heap{
 
+        // 排序
+        // n 表示数据的个数，数组 a 中的数据从下标 1 到 n 的位置
+        public void sort(int[] a, int n) {
+            buildHeap(a, n);// 建堆
+            int k = n;
+            while (k > 1) {
+                swap(a, 1, k);
+                --k;
+                heapify(a, k, 1);
+            }
+        }
+
         // 建堆
         private void buildHeap(int[] a, int n) {
             for (int i = n/2; i >= 1; --i) {// 非叶子节点为什么是 1 ~ n/2
