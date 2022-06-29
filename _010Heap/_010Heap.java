@@ -2,6 +2,14 @@ package _010Heap;
 
 public class _010Heap {
     public class Heap{
+
+        // 建堆
+        private void buildHeap(int[] a, int n) {
+            for (int i = n/2; i >= 1; --i) {// 非叶子节点为什么是 1 ~ n/2
+                heapify(a, n, i);
+            }
+        }
+
         // 删除堆顶元素
         public void removeTop() {
             if (count == 0) {
