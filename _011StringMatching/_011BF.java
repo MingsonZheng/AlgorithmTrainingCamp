@@ -1,6 +1,6 @@
 package _011StringMatching;
 
-public class _011StringMatching {
+public class _011BF {
 
     public static void main(String[] args) {
         char a[] = new char[]{'a', 'b', 'd', 'c', 'a', 'c'};
