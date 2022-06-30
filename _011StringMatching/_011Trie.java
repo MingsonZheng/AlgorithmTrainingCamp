@@ -1,5 +1,8 @@
 package _011StringMatching;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class _011Trie {
     public static void main(String[] args) {
         // 模式串：am hello hi how here her
@@ -11,12 +14,49 @@ public class _011Trie {
         insert("here".toCharArray());
         insert("her".toCharArray());
 
+        // 3）前缀匹配
+        prefixMatch("he".toCharArray());
+
         // 2）多模式匹配
         match("heroheram".toCharArray());
 
         // 1）字符串查找（完全匹配，就是普通的查找）
         System.out.println(find("here".toCharArray()));
         System.out.println(find("there".toCharArray()));
+    }
+
+    // 3）前缀匹配
+    public static void prefixMatch(char[] prefix) {
+        TrieNode p = root;
+        for (int i = 0; i < prefix.length; i++) {
+            int index = prefix[i] - 'a';
+            if (p.children[index] == null) {
+                return; // 没有前缀匹配的字符串
+            }
+            p = p.children[index];
+        }
+        List<Character> path = new ArrayList<>();
+        travelTree(p, prefix, path);
+    }
+
+    private static void travelTree(TrieNode p, char[] prefix, List<Character> path) {
+        if (p.isEndingChar) {
+            StringBuilder resultString = new StringBuilder();
+            resultString.append(prefix);// he
+//            resultString.append(path);// ell
+            var tmpPath = path;// ell
+            tmpPath.remove(0); // ll
+            tmpPath.add(p.data);// llo
+            resultString.append(tmpPath);// llo
+            System.out.println(resultString);// hello
+        }
+        path.add(p.data);// e
+        for (int i = 0; i < p.children.length; i++) {
+            if (p.children[i] != null) {
+                travelTree(p.children[i], prefix, path);
+            }
+        }
+        path.remove(path.size()-1);
     }
 
     // 2）多模式匹配
