@@ -11,9 +11,29 @@ public class _011Trie {
         insert("here".toCharArray());
         insert("her".toCharArray());
 
+        // 2）多模式匹配
+        match("heroheram".toCharArray());
+
         // 1）字符串查找（完全匹配，就是普通的查找）
         System.out.println(find("here".toCharArray()));
         System.out.println(find("there".toCharArray()));
+    }
+
+    // 2）多模式匹配
+    public static void match(char[] mainstr) {
+        for (int i = 0; i < mainstr.length; i++) {
+            TrieNode p = root;
+            for (int j = i; j < mainstr.length; j++) {
+                int index = mainstr[j] - 'a';
+                if (p.children[index] == null) {
+                    break;
+                }
+                p = p.children[index];
+                if (p.isEndingChar) {
+                    System.out.println("matched, mainstr index [" + i + "," + j + "].");
+                }
+            }
+        }
     }
 
     // 1）字符串查找（完全匹配，就是普通的查找）
