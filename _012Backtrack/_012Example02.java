@@ -3,12 +3,26 @@ package _012Backtrack;
 // 回溯例题2、八皇后
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class _012Example02 {
 
-    List<char[][]> result = new ArrayList<>();
-    public List<char[][]> eightQueue() {
+    public static void main(String[] args) {
+        eightQueue();
+        var count = 1;
+        for (var array: result
+             ) {
+            System.out.println(count++);
+            for (int i = 0; i < array.length; i++) {
+                System.out.println(Arrays.toString(array[i]));
+            }
+            System.out.println();
+        }
+    }
+
+    static List<char[][]> result = new ArrayList<>();
+    public static List<char[][]> eightQueue() {
         char[][] board = new char[8][8];
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
@@ -22,7 +36,7 @@ public class _012Example02 {
     // row：阶段
     // board：路径，记录已经做出的决策
     // 可选列表：通过 board 推导出来，没有显示记录
-    public void backtrack(int row, char[][] board) {
+    public static void backtrack(int row, char[][] board) {
         // 结束条件，得到可行解
         if (row == 8) {
             char[][] snapshot = new char[8][8];
@@ -45,7 +59,7 @@ public class _012Example02 {
     }
 
     // 判断 row 行 column 列放置是否合适
-    private boolean isOk(char[][] board, int row, int col) {
+    private static boolean isOk(char[][] board, int row, int col) {
         int n = 8;
         // 检查列是否有冲突
         for (int i = 0; i < row; i++) {
