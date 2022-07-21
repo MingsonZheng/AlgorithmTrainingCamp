@@ -72,5 +72,31 @@ public class _013DFS {
             }
             path.remove(path.size()-1);// 重点理解这句，回退的时候删除（回溯）
         }
+
+        // 回溯代码模板
+        public List<Integer> dfs2(int s, int t) {
+            List<Integer> path = new ArrayList<>();
+            visited[s] = true;
+            path.add(s);
+            dfs_backtrack(s, t, path);
+            return resultPath;
+        }
+
+        public void dfs_backtrack(int s, int t, List<Integer> path) {
+            // 结束条件
+            if (s == t) {
+                resultPath = new ArrayList<>(path);
+                return;
+            }
+            for (int i = 0; i < adj[s].size(); i++) {
+                int q = adj[s].get(i);
+                if (!visited[q]) {
+                    visited[s] = true;
+                    path.add(s);
+                    dfs_backtrack(q, t, path);
+                }
+            }
+            path.remove(path.size()-1);
+        }
     }
 }
