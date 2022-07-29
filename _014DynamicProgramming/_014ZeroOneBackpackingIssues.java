@@ -43,13 +43,14 @@ public class _014ZeroOneBackpackingIssues {
     }
 
     // 动态规划解法
-    public int knaspack(int[] weight, int n, int w) {
-        boolean[][] dp = new boolean[n][w + 1];// 默认值 false
+    public int knapsack(int[] weight, int n, int w) {
+        boolean[][] dp = new boolean[n][w + 1];// 默认值 false，记录每一个阶段可达的所有状态
         dp[0][0] = true;
         if (weight[0] <= w) {
             dp[0][weight[0]] = true;
         }
 
+        // 正推
         for (int i = 1; i < n; i++) {
             for (int j = 0; j <= w; j++) {// 遍历第 i-1 个阶段的所有可达状态
                 if (dp[i-1][j] == true) {// 可达
@@ -57,6 +58,19 @@ public class _014ZeroOneBackpackingIssues {
                     if (j+weight[i] <= w) {
                         dp[i][j+weight[i]] = true;// 推导第 i 层状态
                     }
+                }
+            }
+        }
+
+        // 反推
+        for (int i = 1; i < n; i++) {
+            for (int j = 0; j <= w; j++) {
+                // dp[i][j] = true 表示第 i 个物品决策完之后，存在背包中物品重量为 j 这种状态
+                // (i, j) 这个状态只有可能由 (i-1, j) 和 (i-1, j-weight[i]) 转移过来
+                // dp[i][j] = dp[i-1][j] || dp[i-1][j-weight[i]];
+                if (dp[i-1][j] == true ||
+                        (j-weight[i] >= 0 && dp[i-1][j-weight[i]] == true)) {
+                    dp[i][j] = true;
                 }
             }
         }
