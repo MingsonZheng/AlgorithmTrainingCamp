@@ -3,7 +3,6 @@ package _014DynamicProgramming;
 // 专题：适用问题（0-1 背包问题）
 
 public class _014ZeroOneBackpackingIssues {
-
     private int maxW = Integer.MIN_VALUE;// 结果放到 maxW 中
     private int[] weight = {2, 2, 4, 6, 3};// 物品重量
     private int n = 5;// 物品个数
