@@ -3,10 +3,15 @@ package _014DynamicProgramming;
 // 专题：适用问题（0-1 背包问题）
 
 public class _014ZeroOneBackpackingIssues {
-    private int maxW = Integer.MIN_VALUE;// 结果放到 maxW 中
-    private int[] weight = {2, 2, 4, 6, 3};// 物品重量
-    private int n = 5;// 物品个数
-    private int w = 9;// 背包承受的最大重量
+
+    public static void main(String[] args) {
+        System.out.println(knapsack(weight, n, w));
+    }
+
+    private static int maxW = Integer.MIN_VALUE;// 结果放到 maxW 中
+    private static int[] weight = {2, 2, 4, 6, 3};// 物品重量
+    private static int n = 5;// 物品个数
+    private static int w = 9;// 背包承受的最大重量
 
     // 回溯
     public void f(int i, int cw) {// 调用 f(0, 0)
@@ -43,7 +48,7 @@ public class _014ZeroOneBackpackingIssues {
     }
 
     // 动态规划解法
-    public int knapsack(int[] weight, int n, int w) {
+    public static int knapsack(int[] weight, int n, int w) {
         boolean[][] dp = new boolean[n][w + 1];// 默认值 false，记录每一个阶段可达的所有状态
         dp[0][0] = true;
         if (weight[0] <= w) {
