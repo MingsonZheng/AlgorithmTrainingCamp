@@ -48,6 +48,7 @@ public class _014ZeroOneBackpackingIssues {
     }
 
     // 动态规划解法
+    // 1. 有 n 个物品，选择其中一些物品装入背包，在不超过背包最大重量限制的前提下，背包中可装物品总重量的最大值是多少？（最值）
     public static int knapsack(int[] weight, int n, int w) {
         boolean[][] dp = new boolean[n][w + 1];// 默认值 false，记录每一个阶段可达的所有状态
         dp[0][0] = true;
@@ -86,5 +87,86 @@ public class _014ZeroOneBackpackingIssues {
             }
         }
         return 0;
+    }
+
+    // 2. 有 n 个物品，选择其中一些物品装入背包，能不能正好装满背包？（可行）
+    public boolean knapsack2(int[] weight, int n, int w) {
+        boolean[][] dp = new boolean[n][w + 1];// 默认值 false，记录每一个阶段可达的所有状态
+        dp[0][0] = true;
+        if (weight[0] <= w) {
+            dp[0][weight[0]] = true;
+        }
+
+        // 反推
+        for (int i = 1; i < n; i++) {
+            for (int j = 0; j <= w; j++) {
+                // dp[i][j] = true 表示第 i 个物品决策完之后，存在背包中物品重量为 j 这种状态
+                // (i, j) 这个状态只有可能由 (i-1, j) 和 (i-1, j-weight[i]) 转移过来
+                // dp[i][j] = dp[i-1][j] || dp[i-1][j-weight[i]];
+                if (dp[i-1][j] == true ||
+                        (j-weight[i] >= 0 && dp[i-1][j-weight[i]] == true)) {
+                    dp[i][j] = true;
+                }
+            }
+        }
+
+        return dp[n-1][w];
+    }
+
+    // 3. 有 n 个物品，选择其中一些物品装入背包，正好装满背包所需物品最少个数？（如果装不满，返回 -1）（最值）
+    public int knapsack3(int[] weight, int n, int w) {
+        int[][] dp = new int[n][w + 1];// 记录到达某个状态，最少物品数量
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j <= w; j++) {
+                dp[i][j] = Integer.MAX_VALUE;
+            }
+        }
+
+        dp[0][0] = 0;
+        if (weight[0] <= w) {
+            dp[0][weight[0]] = 1;
+        }
+
+        // 反推
+        for (int i = 1; i < n; i++) {
+            for (int j = 0; j <= w; j++) {
+                // (i, j) 这个状态只有可能由 (i-1, j) 和 (i-1, j-weight[i]) 转移过来
+                if (j-weight[i] < 0) {
+                    dp[i][j] = dp[i-1][j];
+                } else {
+                    dp[i][j] = Math.min(dp[i-1][j], dp[i-1][j-weight[i]] + 1);
+                }
+            }
+        }
+
+        if (dp[n-1][w] == Integer.MAX_VALUE) {
+            return -1;
+        }
+
+        return dp[n-1][w];
+    }
+
+    // 4. 有 n 个物品，选择其中一些物品装入背包，装满背包有多少种不同的装法？（计数）
+    public int knapsack4(int[] weight, int n, int w) {
+        int[][] dp = new int[n][w + 1];// 记录到达某个状态有几条路径
+
+        dp[0][0] = 1;
+        if (weight[0] <= w) {
+            dp[0][weight[0]] = 1;
+        }
+
+        // 反推
+        for (int i = 1; i < n; i++) {
+            for (int j = 0; j <= w; j++) {
+                // (i, j) 这个状态只有可能由 (i-1, j) 和 (i-1, j-weight[i]) 转移过来
+                if (j-weight[i] < 0) {
+                    dp[i][j] = dp[i-1][j];
+                } else {
+                    dp[i][j] = dp[i-1][j] + dp[i-1][j-weight[i]];
+                }
+            }
+        }
+
+        return dp[n-1][w];
     }
 }
