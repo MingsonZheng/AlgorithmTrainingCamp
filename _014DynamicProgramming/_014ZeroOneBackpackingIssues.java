@@ -184,10 +184,18 @@ public class _014ZeroOneBackpackingIssues {
         for (int i = 1; i < n; i++) {
             for (int j = 0; j <= w; j++) {
                 // (i, j) 这个状态只有可能由 (i-1, j) 和 (i-1, j-weight[i]) 转移过来
-                if (j-weight[i] < 0) {
+//                if (j-weight[i] < 0) {
+//                    dp[i][j] = dp[i-1][j];
+//                } else {
+//                    dp[i][j] = Math.min(dp[i-1][j], dp[i-1][j-weight[i]] + 1);
+//                }
+                // 如果 dp[i-1][j-weight[i]] = Integer.MAX_VALUE，dp[i-1][j-weight[i]] + 1 可能会出现越界问题
+                if (dp[i-1][j] != Integer.MAX_VALUE) {
                     dp[i][j] = dp[i-1][j];
-                } else {
-                    dp[i][j] = Math.min(dp[i-1][j], dp[i-1][j-weight[i]] + 1);
+                }
+                if (j-weight[i] >= 0 && dp[i-1][j-weight[i]] != Integer.MAX_VALUE &&
+                        dp[i-1][j-weight[i]] + 1 < dp[i-1][j]) {
+                    dp[i][j] = dp[i-1][j-weight[i]] + 1;
                 }
             }
         }
