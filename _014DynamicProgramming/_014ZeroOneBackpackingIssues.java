@@ -1,6 +1,8 @@
 package _014DynamicProgramming;
 
 // 专题：适用问题（0-1 背包问题）
+// 专题：最值、可行、计数
+// 专题：空间优化
 
 public class _014ZeroOneBackpackingIssues {
 
@@ -111,6 +113,57 @@ public class _014ZeroOneBackpackingIssues {
         }
 
         return dp[n-1][w];
+    }
+
+    // 空间优化（滚动数组）
+    public boolean knapsack2_mem(int[] weight, int n, int w) {
+        boolean[][] dp = new boolean[n][w + 1];// 默认值 false，记录每一个阶段可达的所有状态
+        dp[0][0] = true;
+        if (weight[0] <= w) {
+            dp[0][weight[0]] = true;
+        }
+
+        int turn = 1;// 该填充第 turn 行了（turn=0 或 1）
+
+        // 反推
+        for (int i = 1; i < n; i++) {
+            for (int j = 0; j <= w; j++) {
+                // dp[i][j] = true 表示第 i 个物品决策完之后，存在背包中物品重量为 j 这种状态
+                // (i, j) 这个状态只有可能由 (i-1, j) 和 (i-1, j-weight[i]) 转移过来
+                // dp[i][j] = dp[i-1][j] || dp[i-1][j-weight[i]];
+                if (dp[(turn+1)%2][j] == true ||
+                        (j-weight[i] >= 0 && dp[(turn+1)%2][j-weight[i]] == true)) {
+                    dp[turn][j] = true;
+                }
+            }
+            turn = (turn+1)%2;// 0 变成 1，或 1 变为 0
+        }
+
+        return dp[(turn+1)%2][w];
+    }
+
+    // 空间优化（一维数组）
+    public boolean knapsack2_mem2(int[] weight, int n, int w) {
+        boolean[] dp = new boolean[w + 1];// 默认值 false，记录每一个阶段可达的所有状态
+        dp[0] = true;
+        if (weight[0] <= w) {
+            dp[weight[0]] = true;
+        }
+
+        // 反推
+        for (int i = 1; i < n; i++) {
+            for (int j = w; j >= 0; j++) {// 从后往前推导
+                // dp[i][j] = true 表示第 i 个物品决策完之后，存在背包中物品重量为 j 这种状态
+                // (i, j) 这个状态只有可能由 (i-1, j) 和 (i-1, j-weight[i]) 转移过来
+                // dp[i][j] = dp[i-1][j] || dp[i-1][j-weight[i]];
+                if (dp[j] == true ||
+                        (j-weight[i] >= 0 && dp[j-weight[i]] == true)) {
+                    dp[j] = true;
+                }
+            }
+        }
+
+        return dp[w];
     }
 
     // 3. 有 n 个物品，选择其中一些物品装入背包，正好装满背包所需物品最少个数？（如果装不满，返回 -1）（最值）
