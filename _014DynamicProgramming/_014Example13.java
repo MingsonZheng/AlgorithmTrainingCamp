@@ -24,17 +24,17 @@ public class _014Example13 {
         // dp[i][j] 表示 w1[0 ~ i-1]（长度为 i 子串）和 w2[0 ~ i-1]（长度为 j 子串）的最短编辑距离
         int dp[][] = new int[n+1][m+1];
         for (int j = 0; j <= m; j++) {
-            dp[0][j] = 0;
+            dp[0][j] = j;
         }
         for (int i = 0; i <= n; i++) {
-            dp[i][0] = 0;
+            dp[i][0] = i;
         }
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= m; j++) {
                 if (w1[i-1] == w2[j-1]) {
-                    dp[i][j] = min3(dp[i-1][j-1]+1, dp[i-1][j]+1, dp[i][j-1]);
+                    dp[i][j] = min3(dp[i-1][j]+1, dp[i][j-1]+1, dp[i-1][j-1]);
                 } else {
-                    dp[i][j] = min3(dp[i-1][j-1]+1, dp[i-1][j]+1, dp[i][j-1]+1);
+                    dp[i][j] = min3(dp[i-1][j]+1, dp[i][j-1]+1, dp[i-1][j-1]+1);
                 }
             }
         }
