@@ -1,6 +1,6 @@
 package _015Skill;
 
-// 283. 移动零
+// 283. 移动零（双指针）
 
 import java.util.Arrays;
 

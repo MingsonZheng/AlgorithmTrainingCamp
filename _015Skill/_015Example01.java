@@ -1,6 +1,6 @@
 package _015Skill;
 
-// 面试题 16.24. 数对和
+// 面试题 16.24. 数对和（双指针）
 
 import java.util.ArrayList;
 import java.util.Arrays;
