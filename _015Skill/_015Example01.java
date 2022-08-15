@@ -1,4 +1,4 @@
-package _015Skill._001DoublePointer;
+package _015Skill;
 
 // 面试题 16.24. 数对和
 
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class pairSums {
+public class _015Example01 {
 
     public static void main(String[] args) {
         int[] nums = new int[]{5, 6, 5, 6};
